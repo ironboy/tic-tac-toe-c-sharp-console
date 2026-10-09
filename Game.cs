@@ -14,6 +14,7 @@ class Game
     private void AskForNames()
     {
         Console.WriteLine("Välkommen till TIC-TAC-TOE!");
+        Console.WriteLine("För att skapa en dum datorspelare lägg till * någonstans i spelarens namn\n");
         Console.Write("Spelare X:s namn: ");
         _playerXName = Console.ReadLine()!;
         Console.Write("Spelare O:s namn: ");
@@ -24,20 +25,35 @@ class Game
     {
         while (true) // break this outer loop when someone wins
         {
-            while (true) // break this loop when someone makes a valid move
+            string? currentPlayer =
+             _board.CurrentMarker == 'X' ?
+                _playerXName : _playerOName;
+            // Check if the player is a stupid bot
+            if (currentPlayer!.Contains('*'))
             {
-                Console.Clear();
-                _board.Render();
-                Console.WriteLine();
-                Console.WriteLine(
-                    $"{(_board.CurrentMarker == 'X'
-                     ? _playerXName : _playerOName)}:s ({_board.CurrentMarker}) tur:"
-                );
-                int move = 0;
-                string moveAsString = Console.ReadLine()!;
-                int.TryParse(moveAsString, out move);
-                if (move != 0 && _board.PlaceMarker(move)) { break; }
+                StupidBot.MakeMove(_board);
             }
+            else
+            {
+                // Human
+                while (true) // break this loop when someone makes a valid move
+                {
+                    Console.Clear();
+                    _board.Render();
+                    Console.WriteLine();
+                    Console.WriteLine(
+                        $"{currentPlayer}:s ({_board.CurrentMarker}) tur:"
+                    );
+                    int move = 0;
+                    string moveAsString = Console.ReadLine()!;
+                    int.TryParse(moveAsString, out move);
+                    if (move != 0 && _board.PlaceMarker(move)) { break; }
+                }
+            }
+            // Render after move
+            Console.Clear();
+            _board.Render();
+
             // Check for win or tie
             if (WinCheck.CheckIsWin(_board, 'X'))
             {

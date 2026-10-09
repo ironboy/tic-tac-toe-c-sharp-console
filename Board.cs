@@ -13,6 +13,11 @@ class Board
     // current player/marker
     private char _currentMarker = 'X';
 
+    public char CurrentMarker
+    {
+        get { return _currentMarker; }
+    }
+
     public void Render()
     {
         Console.WriteLine("-------------");

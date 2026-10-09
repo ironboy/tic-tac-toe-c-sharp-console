@@ -18,6 +18,11 @@ class Board
         get { return _currentMarker; }
     }
 
+    public char[][] Matrix
+    {
+        get { return _board; }
+    }
+
     public void Render()
     {
         Console.WriteLine("-------------");

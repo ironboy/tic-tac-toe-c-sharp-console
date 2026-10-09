@@ -38,6 +38,22 @@ class Game
                 int.TryParse(moveAsString, out move);
                 if (move != 0 && _board.PlaceMarker(move)) { break; }
             }
+            // Check for win or tie
+            if (WinCheck.CheckIsWin(_board, 'X'))
+            {
+                Console.WriteLine($"{_playerXName} vann!");
+                break;
+            }
+            else if (WinCheck.CheckIsWin(_board, 'O'))
+            {
+                Console.WriteLine($"{_playerOName} vann!");
+                break;
+            }
+            else if (WinCheck.IsTie(_board))
+            {
+                Console.WriteLine("Det blev oavgjort!");
+                break;
+            }
         }
     }
 

@@ -3,7 +3,6 @@ using System.Diagnostics.Metrics;
 class Board
 {
 
-
     // a "jagged" two-dimensional array in C#
     private char[][] _board =
     {
@@ -55,7 +54,5 @@ class Board
         int col = position % 3;
         return PlaceMarker(row, col);
     }
-
-
 
 }

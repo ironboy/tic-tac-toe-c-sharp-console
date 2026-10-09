@@ -2,7 +2,6 @@ using System.Diagnostics.Metrics;
 
 class Board
 {
-
     // a "jagged" two-dimensional array in C#
     private char[][] _board =
     {

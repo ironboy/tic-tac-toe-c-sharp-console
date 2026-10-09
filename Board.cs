@@ -41,8 +41,10 @@ class Board
         }
     }
 
-    public bool PlaceMarker(int row, int col)
+    public bool PlaceMarker(int row, int col, bool clear = false)
     {
+        // clear position (empty it) if clear is true
+        if (clear) { _board[row][col] = ' '; _currentMarker = _currentMarker == 'X' ? 'O' : 'X'; return true; }
         // if the board position isn't empty
         if (_board[row][col] != ' ')
         {
@@ -55,13 +57,13 @@ class Board
         return true;
     }
 
-    public bool PlaceMarker(int position /* 1 to 9*/)
+    public bool PlaceMarker(int position /* 1 to 9*/, bool clear = false)
     {
         if (position < 1 || position > 9) { return false; }
         position -= 1;
         int row = position / 3;
         int col = position % 3;
-        return PlaceMarker(row, col);
+        return PlaceMarker(row, col, clear);
     }
 
 }

@@ -2,8 +2,18 @@ using System.ComponentModel.Design;
 
 static class WinCheck
 {
-    private static int[][][] _winCombos =
+    public static int[][][] WinCombos { get; } =
     {
+        // Note:
+        // In Tic Tac Toe there only
+        // 8 combinations of slots you win the game with
+        // So easy to hard code
+        // In Connect 4 there are 69 combinations of slots
+        // maybe better to create using a nested loop
+        // over rows and cols + adding 3 extra in different
+        // directions from the current col and row
+        // and adding to list of combos in the loop
+
         // horizontal
         [[0,0],[0,1],[0,2]],
         [[1,0],[1,1],[1,2]],
@@ -20,7 +30,7 @@ static class WinCheck
     public static bool CheckIsWin(Board board, char markerColor)
     {
         // loop through all 8 win combos
-        foreach (int[][] combo in _winCombos)
+        foreach (int[][] combo in WinCombos)
         {
             // loop through the positions in one combo
             bool won = true;

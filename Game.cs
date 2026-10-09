@@ -14,7 +14,8 @@ class Game
     private void AskForNames()
     {
         Console.WriteLine("Välkommen till TIC-TAC-TOE!");
-        Console.WriteLine("För att skapa en dum datorspelare lägg till * någonstans i spelarens namn\n");
+        Console.WriteLine("För att skapa en dum datorspelare lägg till * någonstans i spelarens namn.");
+        Console.WriteLine("För att skapa en smart datorspelare lägg till + någonstans i spelarens namn.\n");
         Console.Write("Spelare X:s namn: ");
         _playerXName = Console.ReadLine()!;
         Console.Write("Spelare O:s namn: ");
@@ -31,7 +32,13 @@ class Game
             // Check if the player is a stupid bot
             if (currentPlayer!.Contains('*'))
             {
+                Thread.Sleep(1000); // let the human see the board before the bot moves
                 StupidBot.MakeMove(_board);
+            }
+            else if (currentPlayer!.Contains("+"))
+            {
+                Thread.Sleep(1000);
+                SmartBot.MakeMove(_board);
             }
             else
             {

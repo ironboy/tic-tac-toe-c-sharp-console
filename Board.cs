@@ -25,14 +25,15 @@ class Board
             // loop through each column
             foreach (char cell in row)
             {
-                Console.Write($"| {(cell == ' ' ? counter++ : cell.ToString())} ");
+                Console.Write($"| {(cell == ' ' ? counter : cell.ToString())} ");
+                counter++;
             }
             Console.WriteLine("|");
             Console.WriteLine("-------------");
         }
     }
 
-    public bool placeMarker(int row, int col)
+    public bool PlaceMarker(int row, int col)
     {
         // if the board position isn't empty
         if (_board[row][col] != ' ')
@@ -44,6 +45,15 @@ class Board
         // toggle marker color
         _currentMarker = _currentMarker == 'X' ? 'O' : 'X';
         return true;
+    }
+
+    public bool PlaceMarker(int position /* 1 to 9*/)
+    {
+        if (position < 1 || position > 9) { return false; }
+        position -= 1;
+        int row = position / 3;
+        int col = position % 3;
+        return PlaceMarker(row, col);
     }
 
 
